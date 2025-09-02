@@ -1,0 +1,60 @@
+body {
+  font-family: 'Segoe UI', sans-serif;
+  background: linear-gradient(135deg, #eef2f3, #8e9eab);
+  min-height: 100vh;
+}
+
+/* Navbar */
+.navbar {
+  backdrop-filter: blur(12px);
+  background: linear-gradient(90deg, #00204a, #005792);
+}
+
+/* Cards */
+.card {
+  border-radius: 0 !important;
+  background: rgba(255, 255, 255, 0.85);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.15);
+}
+
+/* Form Controls */
+.form-control{
+  border-radius: 0px;
+}
+
+.form-select{
+  border-radius: 0px;
+}
+
+.form-control:focus, .form-select:focus{
+  outline: 0px;
+  box-shadow: none;
+  border: 1px solid #00204a;
+}
+
+/* Buttons */
+.btn {
+  border-radius: 0px !important;
+  transition: all 0.3s ease;
+}
+.btn:hover {
+  transform: scale(1.02);
+}
+
+/* Footer */
+footer {
+  background: rgba(0,0,0,0.7);
+  background: linear-gradient(90deg, #00204a, #005792);
+  color: #fff;
+}
+
+/* Tooltip cursor */
+[data-bs-toggle="tooltip"] {
+  cursor: help;
+}

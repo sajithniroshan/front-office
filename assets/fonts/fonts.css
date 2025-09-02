@@ -1,0 +1,26 @@
+/* noto-serif-sinhala-regular - sinhala */
+@font-face {
+  font-family: 'Noto Serif Sinhala';
+  font-style: normal;
+  font-weight: 400;
+  src: url('noto-serif-sinhala-v12-sinhala-regular.eot'); /* IE9 Compat Modes */
+  src: local(''),
+       url('noto-serif-sinhala-v12-sinhala-regular.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
+       url('noto-serif-sinhala-v12-sinhala-regular.woff2') format('woff2'), /* Super Modern Browsers */
+       url('noto-serif-sinhala-v12-sinhala-regular.woff') format('woff'), /* Modern Browsers */
+       url('noto-serif-sinhala-v12-sinhala-regular.ttf') format('truetype'), /* Safari, Android, iOS */
+       url('noto-serif-sinhala-v12-sinhala-regular.svg#NotoSerifSinhala') format('svg'); /* Legacy iOS */
+}
+/* noto-serif-sinhala-700 - sinhala */
+@font-face {
+  font-family: 'Noto Serif Sinhala';
+  font-style: normal;
+  font-weight: 700;
+  src: url('noto-serif-sinhala-v12-sinhala-700.eot'); /* IE9 Compat Modes */
+  src: local(''),
+       url('noto-serif-sinhala-v12-sinhala-700.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
+       url('noto-serif-sinhala-v12-sinhala-700.woff2') format('woff2'), /* Super Modern Browsers */
+       url('noto-serif-sinhala-v12-sinhala-700.woff') format('woff'), /* Modern Browsers */
+       url('noto-serif-sinhala-v12-sinhala-700.ttf') format('truetype'), /* Safari, Android, iOS */
+       url('noto-serif-sinhala-v12-sinhala-700.svg#NotoSerifSinhala') format('svg'); /* Legacy iOS */
+}
