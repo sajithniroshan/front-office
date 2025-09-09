@@ -29,14 +29,14 @@ function frmMsgShow($name, $message = array(), $instruction = ''){
 		if(!empty($message)){
 
 			if(array_key_exists($name, $message)){
-				$msg = '<small class="form-text text-danger text-left si">'.$message[$name].'</small>';
+				$msg = '<small class="form-text text-danger text-left">'.$message[$name].'</small>';
 				return $msg;
 			}
 
 		}else{
 
 			if(!$instruction == ''){
-				$msg = '<small class="form-text text-muted text-left si">'.$instruction.'</small>';
+				$msg = '<small class="form-text text-muted text-left">'.$instruction.'</small>';
 				return $msg;
 			}
 		}
@@ -63,9 +63,9 @@ function siteAlert($color_class, $msg){
 
 
 // get valus for dropdown using db tables
-function ddOption($table, $id, $value, $where = array()) {
+function ddOption($table, $id, $value, $default_text, $where = array()) {
 
-	$myArr = array(''=>'-- SELECT --',);
+	$myArr = array('' => $default_text,);
 
 	if(empty($where)){
 		$data = DB::getInstance()->query("SELECT * FROM {$table}");

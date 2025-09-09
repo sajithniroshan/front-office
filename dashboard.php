@@ -51,80 +51,9 @@
 		</div>
 	</section>
 
-	<!-- Create New Job -->
+	<!-- Job fORM -->
 	<section id="job_form">
-		<div class="card mb-4 animate__animated animate__fadeInUp">
-			<div class="card-header bg-light fw-semibold">Create New Job</div>
-			<div class="card-body">
-				<form class="row g-3">
-					<div class="col-md-3">
-						<div class="form-floating">
-							<input type="text" class="form-control" id="nicNo" placeholder="NIC No">
-							<label for="nicNo">NIC No</label>
-						</div>
-					</div>
-					<div class="col-md-6">
-						<div class="form-floating">
-							<input type="text" class="form-control" id="name" placeholder="Name">
-							<label for="name">Name</label>
-						</div>
-					</div>
-					<div class="col-md-3">
-						<div class="form-floating">
-							<input type="text" class="form-control" id="phone" placeholder="Phone">
-							<label for="phone">Phone</label>
-						</div>
-					</div>
-					<div class="col-md-12">
-						<div class="form-floating">
-							<input type="text" class="form-control" id="address" placeholder="Address">
-							<label for="address">Address</label>
-						</div>
-					</div>
-					
-					<div class="col-md-4">
-						<div class="form-floating">
-							<select class="form-select" id="division" aria-label="Division">
-								<option selected value="">Select Division</option>
-								<option value="1">Sevanagala</option>
-								<option value="2">Kiribban Wewa</option>
-							</select>
-							<label for="division">Division</label>
-						</div>
-					</div>
-					<div class="col-md-4">
-						<div class="form-floating">
-							<select class="form-select" id="division" aria-label="Division">
-								<option selected value="">Select Village</option>
-								<option value="1">Ekamuthugama</option>
-								<option value="2">Sewanagala</option>
-							</select>
-							<label for="division">Village</label>
-						</div>
-					</div>
-					<div class="col-md-4">
-						<div class="form-floating">
-							<select class="form-select" id="division" aria-label="Division">
-								<option selected value="">Select Section</option>
-								<option value="1">Admin</option>
-								<option value="2">Planning</option>
-							</select>
-							<label for="division">Section</label>
-						</div>
-					</div>
-					<div class="col-md-12">
-						<div class="form-floating">
-							<input type="text" class="form-control" id="comment" placeholder="comment">
-							<label for="name">Comment</label>
-						</div>
-					</div>
-					<div class="col-12 d-flex gap-2 mt-4">
-						<button type="submit" class="btn btn-success"><i class="fas fa-plus"></i> Save</button>
-						<button type="reset" class="btn btn-outline-dark"><i class="fas fa-times"></i> Cancel</button>
-					</div>
-				</form>
-			</div>
-		</div>
+		<?php include_once "sections/regForm.php"; ?>
 	</section>
 
 	<!-- Reports Tabs -->
@@ -145,4 +74,46 @@
 </div>
 
 <?php include_once "parts/footer_top.php"; ?>
+<script src="<?php echo baseUrl('ajax/set-village.js'); ?>"></script>
+
+<script>
+
+	// Register new customer
+	$(function(){
+	  $("#registerForm").on("submit", function(e){
+	    e.preventDefault();
+
+	    $.ajax({
+	      url: "<?php echo baseUrl('ajax/registerForm.php'); ?>",
+	      type: "POST",
+	      data: $(this).serialize(),
+	      dataType: "json",
+	      success: function(res){
+	        console.log(res);
+	        if(res.status === "success"){
+	          alert(res.message);
+	          $("#registerForm")[0].reset();
+	        } else {
+	          $("#token").val(res.token);
+	          alert("Error: " + res.message);
+	          const frmErr = JSON.parse(res.message);
+	          Object.keys(frmErr).forEach(key => {
+	          	$(`#${key}Err`).text(frmErr[key]);
+		      	// console.log(`${key}: ${frmErr[key]}`);
+		      });
+	        }
+	      },
+	      error: function(xhr){
+	        console.log(xhr.responseText);
+	        alert("AJAX error: " + xhr.status + " " + xhr.statusText);
+	      }
+	    });
+	  });
+	});
+
+</script>
+
+
+
+
 <?php include_once "parts/footer_bottom.php"; ?>

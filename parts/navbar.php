@@ -20,35 +20,12 @@
           <a class="nav-link active" aria-current="page" href="#"><i class="bi bi-house-door-fill"></i> Home</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="#"><i class="bi bi-journal-plus"></i> New JOB</a>
+          <a class="nav-link active" href="#"><i class="bi bi-person-circle"></i> Profile</a>
         </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#"><i class="bi bi-list-ul"></i> View All</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#"><i class="bi bi-arrow-repeat"></i> Refresh</a>
-        </li>
-
-        <!-- Reports Dropdown -->
-        <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" href="#" id="reportsDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-            <i class="bi bi-graph-up"></i> Reports
-          </a>
-          <ul class="dropdown-menu" aria-labelledby="reportsDropdown">
-            <li><a class="dropdown-item" href="#">Item List</a></li>
-            <li><a class="dropdown-item" href="#">Daily Report</a></li>
-            <li><a class="dropdown-item" href="#">Data Analysis</a></li>
-            <li><a class="dropdown-item" href="#">Progress Report</a></li>
-            <li><a class="dropdown-item" href="#">Section Report</a></li>
-          </ul>
-        </li>
-
-        
       </ul>
 
       <!-- Right-aligned search & profile -->
       <div class="d-flex" role="search">
-        <a href="<?php echo baseUrl('logout.php'); ?>" class="btn btn-outline-light btn-sm mx-2 mb-2 mb-sm-2 mb-md-2 mb-lg-2" type="button"><i class="bi bi-person-circle"></i> Profile</a>
         <a href="<?php echo baseUrl('logout.php'); ?>" class="btn btn-outline-light btn-sm mb-2 mb-sm-2 mb-md-2 mb-lg-2" type="button"><i class="bi bi-box-arrow-in-left"></i> Logout</a>
       </div>
     </div>
