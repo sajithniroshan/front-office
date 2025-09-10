@@ -8,7 +8,6 @@
 						echo Form::form_input('nic', Input::post('nic'), array('class' => 'form-control si', 'placeholder' => 'ජා.හැ. අංකය', 'id' => 'nic'));
 						echo Form::form_label('ජා.හැ. අංකය <span class="text-danger">*</span>', 'nic', array('class' => 'si'));
 					?>
-					<small id="nicErr" class="form-text text-danger text-left"></small>
 				</div>
 			</div>
 			<div class="col-md-6">
@@ -17,7 +16,6 @@
 						echo Form::form_input('name', Input::post('name'), array('class' => 'form-control si', 'placeholder' => 'නම', 'id' => 'name'));
 						echo Form::form_label('නම <span class="text-danger">*</span>', 'name', array('class' => 'si'));
 					?>
-					<small id="nameErr" class="form-text text-danger text-left"></small>
 				</div>
 			</div>
 			<div class="col-md-3">
@@ -26,7 +24,6 @@
 						echo Form::form_input('phone', Input::post('phone'), array('class' => 'form-control si', 'placeholder' => 'දුරකථන අංකය', 'id' => 'phone'));
 						echo Form::form_label('දුරකථන අංකය <span class="text-danger">*</span>', 'phone', array('class' => 'si'));
 					?>
-					<small id="phoneErr" class="form-text text-danger text-left"></small>
 				</div>
 			</div>
 			<div class="col-md-12">
@@ -35,7 +32,6 @@
 						echo Form::form_input('address', Input::post('address'), array('class' => 'form-control si', 'placeholder' => 'ලිපිනය', 'id' => 'address'));
 						echo Form::form_label('ලිපිනය <span class="text-danger">*</span>', 'address', array('class' => 'si'));
 					?>
-					<small id="addressErr" class="form-text text-danger text-left"></small>
 				</div>
 			</div>
 			
@@ -45,7 +41,6 @@
 					echo Form::form_dropdown('gn', ddOption('gn', 'gn_id', 'gn_name', '-- Select GN Division --'), Input::post('gn'), array('class' => 'form-select si', 'id' => 'gn'));
 					echo Form::form_label('ග්‍රාම නිලධාරි වසම <span class="text-danger">*</span>', 'gn', array('class' => 'si'));
 					?>
-					<small id="gnErr" class="form-text text-danger text-left"></small>
 				</div>
 			</div>
 			<div class="col-md-4">
@@ -55,7 +50,6 @@
 						<option value="" >-- Select Village --</option>
 					</select>
 					<?php echo Form::form_label('ගම <span class="text-danger">*</span>', 'village ', array('class' => 'si')); ?>
-					<small id="villageErr" class="form-text text-danger text-left"></small>
 				</div>
 			</div>
 			<div class="col-md-4">
@@ -64,7 +58,6 @@
 					echo Form::form_dropdown('section', ddOption('section', 'section_id', 'section_name', '-- Select Section --'), Input::post('section'), array('class' => 'form-select si', 'id' => 'section'));
 					echo Form::form_label('අංශය <span class="text-danger">*</span>', 'section', array('class' => 'si'));
 					?>
-					<small id="sectionErr" class="form-text text-danger text-left"></small>
 				</div>
 			</div>
 			<div class="col-md-12">
@@ -73,7 +66,6 @@
 						echo Form::form_input('remarks', Input::post('remarks'), array('class' => 'form-control si', 'placeholder' => 'වැදගත් කරුණු', 'id' => 'remarks'));
 						echo Form::form_label('වැදගත් කරුණු', 'remarks', array('class' => 'si'));
 					?>
-					<small id="remarksErr" class="form-text text-danger text-left"></small>
 				</div>
 			</div>
 			<div class="col-12 d-flex gap-2 mt-4">

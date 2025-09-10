@@ -16,8 +16,8 @@
 				<form class="row g-3">
 					<div class="col-md-3">
 						<div class="form-floating">
-							<input type="text" class="form-control" id="jobNo" placeholder="JOB No">
-							<label for="jobNo">JOB No</label>
+							<input type="text" class="form-control si" id="search" placeholder="JOB No">
+							<label for="jobNo" class="si">සොයන්න...</label>
 						</div>
 					</div>
 					<div class="col-md-2">
@@ -34,12 +34,10 @@
 					</div>
 					<div class="col-md-2">
 						<div class="form-floating">
-							<select class="form-select" id="statusSelect" aria-label="Status">
-								<option selected value="">All</option>
-								<option value="pending">Pending</option>
-								<option value="success">Success</option>
-							</select>
-							<label for="statusSelect">Status</label>
+							<?php
+								echo Form::form_dropdown('searchStatus', ddOption('requirement_state', 'state_id', 'state_name', '-- Status --'), Input::post('searchStatus'), array('class' => 'form-select', 'id' => 'searchStatus'));
+								echo Form::form_label('Status', 'searchStatus', array('class' => ''));
+							?>
 						</div>
 					</div>
 					<div class="col-md-3 d-flex gap-2 align-items-center">
@@ -61,11 +59,31 @@
 		<div class="card animate__animated animate__fadeInUp">
 			<div class="card-header fw-semibold">JOB List | <?php echo date('l, F j, Y'); ?></div>
 			<div class="card-body">
-				<div style="height:300px">
+				<div id="job_list" style="height:300px">
 					
-					<button type="button" class="btn btn-primary" data-bs-toggle="tooltip" data-bs-placement="top" title="Tooltip on top">
-					Hover me
-					</button>
+					<table class="table table-bordered">
+						<tr>
+							<th class="text-nowrap text-center">JOB No</th>
+							<th class="w-100 text-center si">නම</th>
+							<th class="text-nowrap text-center si">ජා.හැ. අංකය</th>
+							<th class="text-nowrap text-center si">දිනය</th>
+							<th class="text-nowrap text-center si"></th>
+						</tr>
+						<tr>
+							<th class="text-nowrap">54714</th>
+							<td class="w-100 si">Sajith Niroshan Wanigasingha</td>
+							<td class="text-nowrap si">931911724V</td>
+							<td class="text-nowrap si">2024-05-12</td>
+							<td class="text-nowrap si">
+								&nbsp;
+								<button class="btn btn-sm btn-primary" data-bs-toggle="tooltip" data-bs-placement="top" title="Edit"><i class="bi bi-pencil-square"></i></button>
+								&nbsp;
+								<button class="btn btn-sm btn-success" data-bs-toggle="tooltip" data-bs-placement="top" title="View"><i class="bi bi-eye"></i></button>
+								&nbsp;
+							</td>
+						</tr>
+					</table>
+					
 				</div>
 			</div>
 		</div>
@@ -89,19 +107,32 @@
 	      data: $(this).serialize(),
 	      dataType: "json",
 	      success: function(res){
-	        console.log(res);
+
 	        if(res.status === "success"){
+
 	          alert(res.message);
 	          $("#registerForm")[0].reset();
-	        } else {
+
+	        }else if(res.status === "errorMsg"){
+
+	        	$("#token").val(res.token);
+	        	let setMsg = res.message;
+	        	alert(setMsg);
+
+
+	        }else if((res.status === "error")){
+
 	          $("#token").val(res.token);
-	          alert("Error: " + res.message);
 	          const frmErr = JSON.parse(res.message);
+	          let setMsg = '<ul>';
 	          Object.keys(frmErr).forEach(key => {
-	          	$(`#${key}Err`).text(frmErr[key]);
-		      	// console.log(`${key}: ${frmErr[key]}`);
+	          	setMsg += "<li>" + frmErr[key] + "</li>";
 		      });
-	        }
+		      setMsg += '</ul>';
+		      alert(setMsg);
+
+	        } // if end
+
 	      },
 	      error: function(xhr){
 	        console.log(xhr.responseText);
@@ -110,6 +141,9 @@
 	    });
 	  });
 	});
+
+
+	// loadUsers
 
 </script>
 
