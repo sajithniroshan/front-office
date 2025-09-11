@@ -8,16 +8,18 @@
 <!-- Main container -->
 <div class="container my-4">
 
+	<?php if(Session::exists("success_msg")){ echo siteAlert('alert-success', Session::flash("success_msg")); } // Success msg show  }?>
+
 	<!-- Search Reports -->
 	<section id="search_box">
 		<div class="card mb-4 animate__animated animate__fadeInDown">
-			<div class="card-header bg-light fw-semibold">Search Reports</div>
+			<div class="card-header bg-light fw-semibold">Search...</div>
 			<div class="card-body">
 				<form class="row g-3">
 					<div class="col-md-3">
 						<div class="form-floating">
 							<input type="text" class="form-control si" id="search" placeholder="JOB No">
-							<label for="jobNo" class="si">සොයන්න...</label>
+							<label for="jobNo" class="si">JOB No | NIC | NAME</label>
 						</div>
 					</div>
 					<div class="col-md-2">
@@ -32,7 +34,7 @@
 							<label for="dateTo">To Date</label>
 						</div>
 					</div>
-					<div class="col-md-2">
+					<div class="col-md-3">
 						<div class="form-floating">
 							<?php
 								echo Form::form_dropdown('searchStatus', ddOption('requirement_state', 'state_id', 'state_name', '-- Status --'), Input::post('searchStatus'), array('class' => 'form-select', 'id' => 'searchStatus'));
@@ -40,7 +42,7 @@
 							?>
 						</div>
 					</div>
-					<div class="col-md-3 d-flex gap-2 align-items-center">
+					<div class="col-md-2 d-flex gap-2 align-items-center">
 						<button type="button" class="btn btn-primary" data-bs-toggle="tooltip" data-bs-placement="top" title="Search"><i class="bi bi-search"></i></button>
 						<button type="button" class="btn btn-dark" data-bs-toggle="tooltip" data-bs-placement="top" title="Print"><i class="bi bi-printer"></i></button>
 					</div>
@@ -49,35 +51,29 @@
 		</div>
 	</section>
 
-	<!-- Job fORM -->
-	<section id="job_form">
-		<?php include_once "sections/regForm.php"; ?>
-	</section>
-
 	<!-- Reports Tabs -->
 	<section id="report_area">
 		<div class="card animate__animated animate__fadeInUp">
 			<div class="card-header fw-semibold">JOB List | <?php echo date('l, F j, Y'); ?></div>
 			<div class="card-body">
-				<div id="job_list" style="height:300px">
+				<div id="job_list" style="min-height:500px">
 					
 					<table class="table table-bordered">
 						<tr>
-							<th class="text-nowrap text-center">JOB No</th>
-							<th class="w-100 text-center si">නම</th>
-							<th class="text-nowrap text-center si">ජා.හැ. අංකය</th>
-							<th class="text-nowrap text-center si">දිනය</th>
+							<th class="text-nowrap text-center d-none d-md-table-cell">JOB No</th>
+							<th class="w-100 text-center si">NAME</th>
+							<th class="text-nowrap text-center si d-none d-md-table-cell">NIC</th>
+							<th class="text-nowrap text-center si d-none d-md-table-cell">DATE</th>
 							<th class="text-nowrap text-center si"></th>
 						</tr>
 						<tr>
-							<th class="text-nowrap">54714</th>
-							<td class="w-100 si">Sajith Niroshan Wanigasingha</td>
-							<td class="text-nowrap si">931911724V</td>
-							<td class="text-nowrap si">2024-05-12</td>
+							<th class="text-nowrap d-none d-md-table-cell">10381709202511</th>
+							<td class="w-100 si">Sajith Niroshan Wanigasingha <span class="d-block d-md-none">(931911724V)</span></td>
+							<td class="text-nowrap si d-none d-md-table-cell">931911724V</td>
+							<td class="text-nowrap si d-none d-md-table-cell">2024-05-12</td>
 							<td class="text-nowrap si">
 								&nbsp;
 								<button class="btn btn-sm btn-primary" data-bs-toggle="tooltip" data-bs-placement="top" title="Edit"><i class="bi bi-pencil-square"></i></button>
-								&nbsp;
 								<button class="btn btn-sm btn-success" data-bs-toggle="tooltip" data-bs-placement="top" title="View"><i class="bi bi-eye"></i></button>
 								&nbsp;
 							</td>

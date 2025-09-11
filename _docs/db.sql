@@ -39,7 +39,8 @@ CREATE TABLE IF NOT EXISTS `requirement_state` (
 
 CREATE TABLE IF NOT EXISTS `user` (
   user_id int(11) NOT NULL AUTO_INCREMENT,
-  user_name varchar(2550) NOT NULL,
+  user_unique varchar(255) NOT NULL,
+  user_name varchar(255) NOT NULL,
   user_nic varchar(12) NOT NULL,
   user_telephone varchar(12) NOT NULL,
   user_address varchar(512) NOT NULL,
@@ -50,7 +51,8 @@ CREATE TABLE IF NOT EXISTS `user` (
   user_requirement_state smallint(5) NOT NULL,
   user_created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
   user_updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-  PRIMARY KEY (user_id)
+  PRIMARY KEY (user_id),
+  UNIQUE KEY (user_unique)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- INSERT DATA --

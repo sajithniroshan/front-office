@@ -29,14 +29,14 @@ function frmMsgShow($name, $message = array(), $instruction = ''){
 		if(!empty($message)){
 
 			if(array_key_exists($name, $message)){
-				$msg = '<small class="form-text text-danger text-left">'.$message[$name].'</small>';
+				$msg = '<small style="font-size:11px;" class="form-text text-danger text-left">'.$message[$name].'</small>';
 				return $msg;
 			}
 
 		}else{
 
 			if(!$instruction == ''){
-				$msg = '<small class="form-text text-muted text-left">'.$instruction.'</small>';
+				$msg = '<small style="font-size:11px;" class="form-text text-muted text-left">'.$instruction.'</small>';
 				return $msg;
 			}
 		}
@@ -52,9 +52,7 @@ function siteAlert($color_class, $msg){
 
 	$text = '<div class="alert '.$color_class.' alert-dismissible fade small show si" role="alert">';
 	$text .= $msg;
-	$text .= '<button type="button" class="close" data-dismiss="alert" aria-label="Close">';
-	$text .= '<span aria-hidden="true">&times;</span>';
-	$text .= '</button>';
+	$text .= '<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>';
 	$text .= '</div>';
 
 	return $text;

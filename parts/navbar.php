@@ -1,5 +1,5 @@
 <!-- Modern Navbar with Logo and Custom Color -->
-<nav class="navbar navbar-expand-lg navbar-dark py-0 shadow-sm sticky-top animate__animated animate__fadeInDown">
+<nav class="navbar navbar-expand-lg navbar-dark py-0 shadow-sm sticky-top">
   <div class="container"> <!-- Container for alignment -->
     <!-- Logo -->
     <a class="navbar-brand d-flex align-items-center py-0" href="#">
@@ -17,16 +17,18 @@
     <div class="collapse navbar-collapse" id="navbarContent">
       <ul class="navbar-nav me-auto mb-2 mb-lg-0">
         <li class="nav-item">
-          <a class="nav-link active" aria-current="page" href="#"><i class="bi bi-house-door-fill"></i> Home</a>
+          <a class="nav-link active" aria-current="page" href="#"><i class="bi bi-house-fill"></i> මුල් පිටුව</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link active" href="#"><i class="bi bi-person-circle"></i> Profile</a>
+          <a class="nav-link active" href="#"><i class="bi bi-gear-fill"></i> සැකසුම්</a>
         </li>
       </ul>
 
       <!-- Right-aligned search & profile -->
       <div class="d-flex" role="search">
-        <a href="<?php echo baseUrl('logout.php'); ?>" class="btn btn-outline-light btn-sm mb-2 mb-sm-2 mb-md-2 mb-lg-2" type="button"><i class="bi bi-box-arrow-in-left"></i> Logout</a>
+        <a href="<?php echo baseUrl('add.php'); ?>" class="btn btn-outline-light mb-3 mb-md-0" type="button"><i class="bi bi-person-fill-add"></i></i> Add New</a>
+        &nbsp;
+        <a href="<?php echo baseUrl('logout.php'); ?>" class="btn btn-outline-light mb-3 mb-md-0" type="button"><i class="bi bi-box-arrow-in-left"></i> Logout</a>
       </div>
     </div>
   </div>

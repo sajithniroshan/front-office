@@ -1,5 +1,3 @@
-<?php header("Content-Type: application/json"); ?>
-<?php include_once "../_config/config.php"; ?>
 <?php 
 
     // Check alreday login a admin
@@ -10,19 +8,20 @@
 
     $adminID = Session::get(Config::get('session:session_id'));
 
-    if( isSignedIn($adminID, array("root","subject", "front-office")) == false ) {
+    if( isSignedIn($adminID, array("root", "front-office")) == false ) {
         header('location:'.Config::get('url:base').'logout.php');
         exit();
     }
 
-    $this_admin = DB::getInstance()->query("SELECT * FROM admin WHERE admin_id = ".$adminID)->first();
-    $this_year = date("Y");
-
 ?>
+
 
 <?php
 
-    if($_SERVER['REQUEST_METHOD'] == 'POST' && Token::check(Input::post('token'))) {
+    $validateErr = array();
+    $errMsg = "";
+
+    if($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['add']) && Token::check(Input::post('token'))) {
 
         $validate_array = array();
 
@@ -68,8 +67,11 @@
 
         if($validation->passed()){
 
+            $unique = $this_user->user_id.date('HismYd');
+
             $fields = array(
                 'user_name' => Input::post('name'),
+                'user_unique' => $unique,
                 'user_nic' => Input::post('nic'),
                 'user_telephone' => Input::post('phone'),
                 'user_address' => Input::post('address'),
@@ -87,19 +89,20 @@
                     throw new Exception('There was a problem of inserting data');
                 }else{
 
-                    echo json_encode(["status" => "success", "message" => "User added successfully"]);
+                    Session::delete("success_msg");
+                    Session::flash("success_msg", "<strong>Submission success :</strong> New User added successfully.");
+                    header('location:'.Config::get('url:base').'dashboard.php');
                     exit();
                 }
 
             } catch (Exception $e) {
                 $errMsg  = $e->getMessage();
-                echo json_encode(["status" => "errorMsg", "message" => $errMsg, "token" => Token::generate()]);
             }
 
             
         }else{
             $validateErr = $validation->errors();
-            echo json_encode(["status" => "error", "message" => json_encode($validateErr), "token" => Token::generate()]);
+            $errMsg = "<strong>Submission success :</strong> Re-check enterd data.";
         }
 
         
