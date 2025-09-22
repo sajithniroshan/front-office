@@ -2,7 +2,7 @@
 
     // Check alreday login a user & if logged redirect to their dashboards.
     if( Session::exists(Config::get('session:session_id')) ){
-        header('location:'.Config::get('url:base').'dashboard');
+        header('location:'.Config::get('url:base').'dashboard.php');
         exit();
     }
 

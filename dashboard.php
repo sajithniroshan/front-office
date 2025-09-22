@@ -43,7 +43,7 @@
 						</div>
 					</div>
 					<div class="col-md-2 d-flex gap-2 align-items-center">
-						<button type="button" class="btn btn-primary" data-bs-toggle="tooltip" data-bs-placement="top" title="Search"><i class="bi bi-search"></i></button>
+						<button type="button" id="search_reset" class="btn btn-primary" data-bs-toggle="tooltip" data-bs-placement="top" title="Reset"><i class="bi bi-arrow-clockwise"></i></button>
 						<button type="button" class="btn btn-dark" data-bs-toggle="tooltip" data-bs-placement="top" title="Print"><i class="bi bi-printer"></i></button>
 					</div>
 				</form>
@@ -54,30 +54,22 @@
 	<!-- Reports Tabs -->
 	<section id="report_area">
 		<div class="card animate__animated animate__fadeInUp">
-			<div class="card-header fw-semibold">JOB List | <?php echo date('l, F j, Y'); ?></div>
+			<div class="card-header fw-semibold">JOB List | <span id="data_about"><?php echo date('l, F j, Y'); ?></span></div>
 			<div class="card-body">
 				<div id="job_list" style="min-height:500px">
 					
-					<table class="table table-bordered">
-						<tr>
-							<th class="text-nowrap text-center d-none d-md-table-cell">JOB No</th>
-							<th class="w-100 text-center si">NAME</th>
-							<th class="text-nowrap text-center si d-none d-md-table-cell">NIC</th>
-							<th class="text-nowrap text-center si d-none d-md-table-cell">DATE</th>
-							<th class="text-nowrap text-center si"></th>
-						</tr>
-						<tr>
-							<th class="text-nowrap d-none d-md-table-cell">10381709202511</th>
-							<td class="w-100 si">Sajith Niroshan Wanigasingha <span class="d-block d-md-none">(931911724V)</span></td>
-							<td class="text-nowrap si d-none d-md-table-cell">931911724V</td>
-							<td class="text-nowrap si d-none d-md-table-cell">2024-05-12</td>
-							<td class="text-nowrap si">
-								&nbsp;
-								<button class="btn btn-sm btn-primary" data-bs-toggle="tooltip" data-bs-placement="top" title="Edit"><i class="bi bi-pencil-square"></i></button>
-								<button class="btn btn-sm btn-success" data-bs-toggle="tooltip" data-bs-placement="top" title="View"><i class="bi bi-eye"></i></button>
-								&nbsp;
-							</td>
-						</tr>
+					<table class="table table-bordered" >
+						<thead>
+							<tr>
+								<th class="text-nowrap text-center d-none d-md-table-cell">JOB NO</th>
+								<th class="w-100 text-center si">NAME</th>
+								<th class="text-nowrap text-center si d-none d-md-table-cell">NIC</th>
+								<th class="text-nowrap text-center si d-none d-md-table-cell">DATE</th>
+								<th class="text-nowrap text-center si"></th>
+							</tr>
+						</thead>
+						<tbody >
+						</tbody>
 					</table>
 					
 				</div>
@@ -89,61 +81,5 @@
 
 <?php include_once "parts/footer_top.php"; ?>
 <script src="<?php echo baseUrl('ajax/set-village.js'); ?>"></script>
-
-<script>
-
-	// Register new customer
-	$(function(){
-	  $("#registerForm").on("submit", function(e){
-	    e.preventDefault();
-
-	    $.ajax({
-	      url: "<?php echo baseUrl('ajax/registerForm.php'); ?>",
-	      type: "POST",
-	      data: $(this).serialize(),
-	      dataType: "json",
-	      success: function(res){
-
-	        if(res.status === "success"){
-
-	          alert(res.message);
-	          $("#registerForm")[0].reset();
-
-	        }else if(res.status === "errorMsg"){
-
-	        	$("#token").val(res.token);
-	        	let setMsg = res.message;
-	        	alert(setMsg);
-
-
-	        }else if((res.status === "error")){
-
-	          $("#token").val(res.token);
-	          const frmErr = JSON.parse(res.message);
-	          let setMsg = '<ul>';
-	          Object.keys(frmErr).forEach(key => {
-	          	setMsg += "<li>" + frmErr[key] + "</li>";
-		      });
-		      setMsg += '</ul>';
-		      alert(setMsg);
-
-	        } // if end
-
-	      },
-	      error: function(xhr){
-	        console.log(xhr.responseText);
-	        alert("AJAX error: " + xhr.status + " " + xhr.statusText);
-	      }
-	    });
-	  });
-	});
-
-
-	// loadUsers
-
-</script>
-
-
-
-
+<script src="<?php echo baseUrl('ajax/user-list.js'); ?>"></script>
 <?php include_once "parts/footer_bottom.php"; ?>
