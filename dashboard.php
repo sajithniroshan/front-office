@@ -79,7 +79,45 @@
 
 </div>
 
+
+<!-- Model -->
+<div class="modal fade" id="view_modal" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+  <div class="modal-dialog modal-xl">
+    <div class="modal-content">
+      <div class="modal-header py-1">
+        <h1 class="modal-title fs-5" id="staticBackdropLabel"><span>VIEW JOB</span></h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+
+      </div>
+    </div>
+  </div>
+</div>
+<!-- End Model -->
+
 <?php include_once "parts/footer_top.php"; ?>
 <script src="<?php echo baseUrl('ajax/set-village.js'); ?>"></script>
 <script src="<?php echo baseUrl('ajax/user-list.js'); ?>"></script>
+
+<script>
+	$(document).ready(function(){
+		$(document).on('click', '#show_user', function(event){
+			event.preventDefault();
+			let id = $(this).data("id");
+
+			$.ajax({  
+	          url:"<?php echo baseUrl('ajax/user-view.php'); ?>",  
+	          method:"POST",  
+	          data:{id:id}, 
+	          success:function(data){
+	              $('.modal-body').html(data);
+          		  $('#view_modal').modal('show');
+	          }  
+	        });
+
+		});
+	});
+</script>
+
 <?php include_once "parts/footer_bottom.php"; ?>

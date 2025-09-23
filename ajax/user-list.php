@@ -96,7 +96,7 @@ if($total_data > 0){
 		$output .= '&nbsp;';
 		$output .= '<a href="'.baseUrl('edit.php?id='.$data->user_id).'" class="btn btn-sm btn-primary" title="Edit"><i class="bi bi-pencil-square"></i></a>';
 		$output .= '&nbsp;';
-		$output .= '<button data-id="'.$data->user_id.'" class="btn btn-sm btn-success show_user" title="View"><i class="bi bi-eye"></i></button>';
+		$output .= '<button data-id="'.$data->user_id.'" class="btn btn-sm btn-success" id="show_user" title="View"><i class="bi bi-eye"></i></button>';
 		$output .= '&nbsp;';
 		$output .= '</td>';
 		$output .= '</tr>';

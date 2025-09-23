@@ -89,6 +89,16 @@
                     throw new Exception('There was a problem of inserting data');
                 }else{
 
+                    if(IS_LIVE == 0){
+                        $QR_path = $_SERVER['DOCUMENT_ROOT'].'/front-office/uploads/qr/'.$unique.'.png';
+                    }else{
+                        $QR_path = $_SERVER['DOCUMENT_ROOT'].'/uploads/qr/'.$unique.'.png';
+                    }
+
+                    $QR_target =  baseURL('user/'.$unique);
+
+                    MakeQR::create($QR_target, $QR_path, 'L', 100, 1);
+
                     Session::delete("success_msg");
                     Session::flash("success_msg", "<strong>Submission success :</strong> New User added successfully.");
                     header('location:'.Config::get('url:base').'dashboard.php');

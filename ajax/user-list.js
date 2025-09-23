@@ -31,8 +31,11 @@
     }
 
 
+
+
     // nav link click
     $(document).on('click', '.page-link', function(){
+      $('#job_list').html('<div class="d-flex justify-content-center m-5"><div class="spinner-border text-info" role="status"><span class="visually-hidden">Loading...</span></div></div>');
       var page = $(this).data('page_number');
       var search = $('#search').val();
       var dateFrom = $('#dateFrom').val();
@@ -43,6 +46,7 @@
 
     // search box change
     $('#search').keyup(function(){
+      $('#job_list').html('<div class="d-flex justify-content-center m-5"><div class="spinner-border text-info" role="status"><span class="visually-hidden">Loading...</span></div></div>');
       var search = $('#search').val();
       var dateFrom = $('#dateFrom').val();
       var dateTo = $('#dateTo').val();
@@ -52,6 +56,7 @@
 
     // dd dateFrom change
     $('#dateFrom').change(function(){
+      $('#job_list').html('<div class="d-flex justify-content-center m-5"><div class="spinner-border text-info" role="status"><span class="visually-hidden">Loading...</span></div></div>');
       var search = $('#search').val();
       var dateFrom = $('#dateFrom').val();
       var dateTo = $('#dateTo').val();
@@ -61,6 +66,7 @@
 
     // dd dateTo change
     $('#dateTo').change(function(){
+      $('#job_list').html('<div class="d-flex justify-content-center m-5"><div class="spinner-border text-info" role="status"><span class="visually-hidden">Loading...</span></div></div>');
       var search = $('#search').val();
       var dateFrom = $('#dateFrom').val();
       var dateTo = $('#dateTo').val();
@@ -70,6 +76,7 @@
 
     // dd searchStatus change
     $('#searchStatus').change(function(){
+      $('#job_list').html('<div class="d-flex justify-content-center m-5"><div class="spinner-border text-info" role="status"><span class="visually-hidden">Loading...</span></div></div>');
       var search = $('#search').val();
       var dateFrom = $('#dateFrom').val();
       var dateTo = $('#dateTo').val();
@@ -78,6 +85,7 @@
     });
 
     $(document).on('click', '#search_reset', function(){
+      $('#job_list').html('<div class="d-flex justify-content-center m-5"><div class="spinner-border text-info" role="status"><span class="visually-hidden">Loading...</span></div></div>');
       $('#search').val('').trigger('change');
       $('#dateFrom').val('').trigger('change');
       $('#dateTo').val('').trigger('change');
