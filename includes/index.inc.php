@@ -23,6 +23,10 @@
             'min' => array(6, 'Passwords must contain at least 6 characters')
         );
 
+        $validate_array['acc_type'] = array(
+            'required' => array(true, 'Account Type is required'),
+        );
+
         $validate = new Validation();
         $validation = $validate->check($_POST, $validate_array);
 
@@ -49,35 +53,83 @@
 
         if( $validation->passed() && $captchaSuccess->success){
 
+            $acc_type = Input::post('acc_type');
+
             $today = date('Y-m-d H:i:s');
 
             $email = Input::post('email');
             $password = Input::post('password');
 
-            $admin_q = DB::getInstance()->query('SELECT * FROM admin WHERE admin_email = "'.$email.'" AND admin_status = "active"');
+            if( $acc_type == "root"){
 
-            if( $admin_q->count() == 1 ){
 
-                $admin = $admin_q->first();
+                $admin_q = DB::getInstance()->query('SELECT * FROM admin WHERE admin_email = "'.$email.'" AND admin_type = "root" AND admin_status = "active"');
 
-                 if ($admin->admin_password == sha1($password)){
+                if( $admin_q->count() == 1 ){
 
-                        Session::put(Config::get('session:session_id'), $admin->admin_id);
-                        Session::put(Config::get('session:session_name'), $admin->admin_name);
-                        Session::put(Config::get('session:session_type'), $admin->admin_type);
+                    $admin = $admin_q->first();
 
-                        DB::getInstance()->update('admin', 'admin_id', $admin->admin_id, array('admin_updated_at' => $today));
-                        header('location:'.Config::get('url:base').'dashboard.php');
-                        exit();
+                     if ($admin->admin_password == sha1($password)){
+
+                            Session::put(Config::get('session:session_id'), $admin->admin_id);
+                            Session::put(Config::get('session:session_name'), $admin->admin_name);
+                            Session::put(Config::get('session:session_type'), $admin->admin_type);
+
+                            DB::getInstance()->update('admin', 'admin_id', $admin->admin_id, array('admin_updated_at' => $today));
+                            header('location:'.Config::get('url:base').'dashboard.php');
+                            exit();
+
+                    }else{
+
+                        $errMsg = "Invalid credentials or inactive account";
+                    }
 
                 }else{
 
                     $errMsg = "Invalid credentials or inactive account";
                 }
 
+
+            }elseif( $acc_type == "front-office" ){
+
+
+                $admin_q = DB::getInstance()->query('SELECT * FROM admin WHERE admin_email = "'.$email.'" AND admin_type = "front-office" AND admin_status = "active"');
+
+                if( $admin_q->count() == 1 ){
+
+                    $admin = $admin_q->first();
+
+                     if ($admin->admin_password == sha1($password)){
+
+                            Session::put(Config::get('session:session_id'), $admin->admin_id);
+                            Session::put(Config::get('session:session_name'), $admin->admin_name);
+                            Session::put(Config::get('session:session_type'), $admin->admin_type);
+
+                            DB::getInstance()->update('admin', 'admin_id', $admin->admin_id, array('admin_updated_at' => $today));
+                            header('location:'.Config::get('url:base').'dashboard.php');
+                            exit();
+
+                    }else{
+
+                        $errMsg = "Invalid credentials or inactive account";
+                    }
+
+                }else{
+
+                    $errMsg = "Invalid credentials or inactive account";
+                }
+
+
+            }elseif( $acc_type == "subject" ){
+
+                $admin_q = DBHR::getInstance()->query('SELECT * FROM admin WHERE admin_email = "'.$email.'" AND admin_status = "active"');
+
+                $errMsg = "This is for subject accounts";
+
             }else{
 
                 $errMsg = "Invalid credentials or inactive account";
+
             }
 
 

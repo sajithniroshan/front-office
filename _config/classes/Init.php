@@ -9,6 +9,12 @@ class Init{
 		    'pwd'=> '',
 		    'db'=> 'gov_office'
 	  	),
+	  	'mysqlhr' => array(
+		    'host'=> 'localhost',
+		    'user'=> 'root',
+		    'pwd'=> '',
+		    'db'=> 'gov_office'
+	  	),
 	  	'session' => array(
 		    'token_name' => 'gov-office-token',
 		    'session_name'=> 'gov-office-name', 

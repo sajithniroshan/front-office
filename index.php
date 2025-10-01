@@ -145,6 +145,16 @@
       <?php echo frmMsgShow('password',$validateErr); ?>
     </div>
 
+
+    <div class="form-floating">
+      <?php
+          echo Form::form_dropdown('acc_type', array("subject" => "Subject", "front-office" => "Front Office", "root" => "Admin"), Input::post('acc_type'), array('class' => 'form-select form-control', 'id' => 'acc_type'));
+          echo Form::form_label('Account Type', 'acc_type', array('class' => ''));
+        ?>
+        <?php echo frmMsgShow('acc_type',$validateErr); ?>
+    </div>
+
+
     <center><div class="g-recaptcha mb-3" data-sitekey="<?php echo $reCAPTCHA_siteKey; ?>"></div></center>
     <input type="hidden" name="token" value="<?php echo Token::generate(); ?>">
     <button type="submit" name="login" class="btn btn-primary w-100">Login</button>
